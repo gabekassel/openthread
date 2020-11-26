@@ -228,7 +228,7 @@ jobs:
         submodules: true
     - name: Bootstrap
       run: |
-        sudo apt-get --no-install-recommends install -y expect ninja-build lcov
+        sudo apt-get --no-install-recommends install -y expect ninja-build lcov socat
     - name: Run RCP Mode
       run: |
         OT_OPTIONS=-DOT_READLINE=OFF OT_NODE_TYPE=rcp ./script/test build expect
