@@ -93,7 +93,7 @@ jobs:
         ./bootstrap
     - name: Run OTNS Tests
       env:
-        OTNS_COMMIT: "632503d7ccbadcbdc49c6245eafc2425c80bbf04" # Sep 29, 2020
+        OTNS_COMMIT: "2d57478d9e748d09cad65cf5374942e9d96719ed" # openthread/ot-ns#112
       run: |
         export OT_DIR=$PWD
         mkdir -p /tmp/otns
@@ -191,7 +191,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: cli-ftd-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage gcc
@@ -234,7 +234,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: cli-mtd-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage gcc
@@ -273,7 +273,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: cli-time-sync-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage gcc
@@ -426,7 +426,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: multiple-instance-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage gcc
@@ -467,7 +467,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: ncp-gcc-m32-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage gcc
@@ -507,7 +507,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: cli-clang-thread-cert
-        path: build/x86_64-unknown-linux-gnu/tests/scripts/thread-cert
+        path: build/simulation/tests/scripts/thread-cert
     - name: Generate Coverage
       run: |
         ./script/test generate_coverage llvm
