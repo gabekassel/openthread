@@ -49,6 +49,8 @@ jobs:
       with:
         submodules: true
     - name: Bootstrap
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo apt-get update
         sudo apt-get --no-install-recommends install -y dbus libdbus-1-dev
@@ -59,7 +61,7 @@ jobs:
         sudo apt-get --no-install-recommends install -y libboost-dev libboost-signals-dev
         sudo apt-get --no-install-recommends install -y lcov
 
-        git clone --depth=1 --branch=master https://github.com/openthread/wpantund.git
+        script/git-tool clone --depth=1 --branch=master https://github.com/openthread/wpantund.git
         cd wpantund
         ./bootstrap.sh
         ./configure
@@ -86,6 +88,8 @@ jobs:
       with:
         submodules: true
     - name: Bootstrap
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo apt-get update
         sudo apt-get --no-install-recommends install -y dbus libdbus-1-dev
@@ -96,7 +100,7 @@ jobs:
         sudo apt-get --no-install-recommends install -y libboost-dev libboost-signals-dev
         sudo apt-get --no-install-recommends install -y lcov
 
-        git clone --depth=1 --branch=master https://github.com/openthread/wpantund.git
+        script/git-tool clone --depth=1 --branch=master https://github.com/openthread/wpantund.git
         cd wpantund
         ./bootstrap.sh
         ./configure
