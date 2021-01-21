@@ -34,16 +34,16 @@ PREFIX_UC      = $(NAME)
 PREFIX_LC     := $(shell echo $(PREFIX_UC) | tr A-Z a-z)
 CROSS_COMPILE ?= $(TARGET)-
 
-AR                              = $(CROSS_COMPILE)ar
-AS                              = $(CROSS_COMPILE)as
-CPP                             = $(CROSS_COMPILE)cpp
-CC                              = $(CROSS_COMPILE)gcc
-CXX                             = $(CROSS_COMPILE)g++
-LD                              = $(CROSS_COMPILE)ld
-STRIP                           = $(CROSS_COMPILE)strip
-NM                              = $(CROSS_COMPILE)nm
-RANLIB                          = $(CROSS_COMPILE)ranlib
-OBJCOPY                         = $(CROSS_COMPILE)objcopy
+AR                              ?= $(CROSS_COMPILE)ar
+AS                              ?= $(CROSS_COMPILE)as
+CPP                             ?= $(CROSS_COMPILE)cpp
+CC                              ?= $(CROSS_COMPILE)gcc
+CXX                             ?= $(CROSS_COMPILE)g++
+LD                              ?= $(CROSS_COMPILE)ld
+STRIP                           ?= $(CROSS_COMPILE)strip
+NM                              ?= $(CROSS_COMPILE)nm
+RANLIB                          ?= $(CROSS_COMPILE)ranlib
+OBJCOPY                         ?= $(CROSS_COMPILE)objcopy
 
 BuildJobs                      ?= 9
 
