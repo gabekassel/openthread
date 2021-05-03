@@ -193,6 +193,8 @@ void RouterAdvMessage::SetToDefault(void)
     mHeader.SetType(Ip6::Icmp::Header::kTypeRouterAdvert);
     mReachableTime = 0;
     mRetransTimer  = 0;
+    SetRouterLifetime(1800);
+    SetCurHopLimit(64);
 }
 
 const RouterAdvMessage &RouterAdvMessage::operator=(const RouterAdvMessage &aOther)
