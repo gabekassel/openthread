@@ -96,6 +96,7 @@ class OtCliCommandRunner(OTCommandHandler):
         self.__otcli.writeline(cmd)
 
         if cmd in {'reset', 'factoryreset'}:
+            self.__otcli.writeline("")
             return []
 
         if self.__expect_command_echoback:
