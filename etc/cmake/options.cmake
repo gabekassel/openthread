@@ -350,7 +350,6 @@ if (OT_SRP_SERVER)
     target_compile_definitions(ot-config INTERFACE "OPENTHREAD_CONFIG_SRP_SERVER_ENABLE=1")
 endif()
 
-option(OT_POSIX_SYSLOG_FACILITY_ID "Set syslog facility - see https://linux.die.net/man/3/openlog for options")
 if(OT_POSIX_SYSLOG_FACILITY_ID)
     target_compile_definitions(ot-config INTERFACE "OPENTHREAD_POSIX_CONFIG_SYSLOG_FACILITY_ID=${OT_POSIX_SYSLOG_FACILITY_ID}")
 endif()
