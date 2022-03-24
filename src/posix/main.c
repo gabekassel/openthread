@@ -385,7 +385,7 @@ int main(int argc, char *argv[])
     }
 
     ParseArg(argc, argv, &config);
-    openlog(argv[0], LOG_PID | (config.mIsVerbose ? LOG_PERROR : 0), OPENTHREAD_POSIX_CONFIG_SYSLOG_FACILITY_ID);
+    openlog(argv[0], LOG_PID | (config.mIsVerbose ? LOG_PERROR : 0), LOG_LOCAL5);
     setlogmask(setlogmask(0) & LOG_UPTO(LOG_DEBUG));
     instance = InitInstance(&config);
 
