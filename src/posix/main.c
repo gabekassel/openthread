@@ -73,6 +73,10 @@
 #define OPENTHREAD_ENABLE_COVERAGE 0
 #endif
 
+#ifndef OPENTHREAD_POSIX_CONFIG_SYSLOG_FACILITY_ID
+#define OPENTHREAD_POSIX_CONFIG_SYSLOG_FACILITY_ID LOG_DAEMON
+#endif
+
 /**
  * This function initializes NCP app.
  *
