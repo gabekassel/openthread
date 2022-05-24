@@ -78,7 +78,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                 'timestamp': 1,
                 'channel': 19,
                 'network_key': '00112233445566778899aabbccddeeff',
-                'security_policy': [3600, 'onrc']
+                'security_policy': [3600, 'onrcb']
             },
             'mode': 'rdn',
         },
@@ -88,7 +88,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                 'timestamp': 1,
                 'channel': 19,
                 'network_key': '00112233445566778899aabbccddeeff',
-                'security_policy': [3600, 'onrc']
+                'security_policy': [3600, 'onrcb']
             },
             'mode': 'rdn',
             'allowlist': [LEADER]
@@ -104,7 +104,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                 'timestamp': 1,
                 'channel': 19,
                 'network_key': '00112233445566778899aabbccddeeff',
-                'security_policy': [3600, 'onrc']
+                'security_policy': [3600, 'onrcb']
             },
             'mode': 'rdn',
         },
@@ -131,10 +131,10 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
         self.simulator.go(5)
 
         # Step 5
-        # Disabling O-Bit security_policy = [3600, 0b01110000]
+        # Disabling O-Bit security_policy = [3600, 0b01111000]
         self.nodes[COMMISSIONER_1].send_mgmt_active_set(
             active_timestamp=15,
-            security_policy=[3600, 'nrc'],
+            security_policy=[3600, 'nrcb'],
         )
         self.simulator.go(5)
 
@@ -144,10 +144,10 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
         self.simulator.go(5)
 
         # Step 9
-        # Disabling N-Bit security_policy = [3600, 0b10110000]
+        # Disabling N-Bit security_policy = [3600, 0b10111000]
         self.nodes[COMMISSIONER_1].send_mgmt_active_set(
             active_timestamp=20,
-            security_policy=[3600, 'orc'],
+            security_policy=[3600, 'orcb'],
         )
         self.simulator.go(5)
 
@@ -174,10 +174,10 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
         self.simulator.go(20)
 
         # Step 17
-        # Disabling R-Bit security_policy = [3600, 0b11010000]
+        # Disabling R-Bit security_policy = [3600, 0b11011000]
         self.nodes[COMMISSIONER_1].send_mgmt_active_set(
             active_timestamp=30,
-            security_policy=[3600, 'onc'],
+            security_policy=[3600, 'oncb'],
         )
         self.simulator.go(5)
 
@@ -210,7 +210,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
         #             2.04 Changed
         #         CoAP Payload
         #             Security Policy TLV
-        #                 Bits “O”,”N”,”R”,”C” should be set to 1
+        #                 Bits “O”,”N”,”R”,”C”,”B” should be set to 1
         pkts.filter_wpan_src64(LEADER).\
             filter_ipv6_dst(COMMISSIONER_1_RLOC).\
             filter_coap_ack(MGMT_ACTIVE_GET_URI).\
@@ -218,8 +218,9 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                              p.thread_meshcop.tlv.sec_policy_o == 1 and
                              p.thread_meshcop.tlv.sec_policy_n == 1 and
                              p.thread_meshcop.tlv.sec_policy_r == 1 and
-                             p.thread_meshcop.tlv.sec_policy_c == 1) or
-                            (p.thread_meshcop.tlv.unknown == '0e10f7')).\
+                             p.thread_meshcop.tlv.sec_policy_c == 1 and
+                             p.thread_meshcop.tlv.sec_policy_b == 1) or
+                            (p.thread_meshcop.tlv.unknown == '0e10ff')).\
             must_next()
 
         # Step 5: Commissioner_1 sends MGMT_ACTIVE_SET.req to Leader
@@ -239,7 +240,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                              }  == set(p.thread_meshcop.tlv.type) and\
                    p.thread_meshcop.tlv.active_tstamp == 15 and\
                    (p.thread_meshcop.tlv.sec_policy_o == 0 or
-                    p.thread_meshcop.tlv.unknown == '0e1077')).\
+                    p.thread_meshcop.tlv.unknown == '0e107f')).\
             must_next()
 
         # Step 6: Leader MUST send MGMT_ACTIVE_SET.rsp to the Commissioner_1
@@ -292,7 +293,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                              }  == set(p.thread_meshcop.tlv.type) and\
                    p.thread_meshcop.tlv.active_tstamp == 20 and\
                    (p.thread_meshcop.tlv.sec_policy_n == 0 or
-                    p.thread_meshcop.tlv.unknown == '0e10b7')).\
+                    p.thread_meshcop.tlv.unknown == '0e10bf')).\
             must_next()
 
         # Step 10: Leader MUST send MGMT_ACTIVE_SET.rsp to the Commissioner_1
@@ -376,7 +377,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
                              }  == set(p.thread_meshcop.tlv.type) and\
                    p.thread_meshcop.tlv.active_tstamp == 30 and\
                    (p.thread_meshcop.tlv.sec_policy_r == 0 or
-                    p.thread_meshcop.tlv.unknown == '0e10d7')).\
+                    p.thread_meshcop.tlv.unknown == '0e10df')).\
             must_next()
 
         # Step 18: Leader MUST send MGMT_ACTIVE_SET.rsp to the Commissioner_1
@@ -407,7 +408,7 @@ class Cert_5_8_04_SecurityPolicyTLV(thread_cert.TestCase):
             filter(lambda p:
                    p.mle.tlv.active_tstamp == 30 and\
                    (p.thread_meshcop.tlv.sec_policy_r == 0 or
-                    p.thread_meshcop.tlv.unknown == '0e10d7')).\
+                    p.thread_meshcop.tlv.unknown == '0e10df')).\
             must_next()
 
 

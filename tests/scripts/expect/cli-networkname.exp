@@ -43,9 +43,7 @@ wait_for "state" "leader"
 expect_line "Done"
 
 switch_node 2
-send "ifconfig up\n"
-expect_line "Done"
-send "discover\n"
+send "scan\n"
 expect "Thread Network"
 expect_line "Done"
 
@@ -60,7 +58,7 @@ wait_for "state" "leader"
 expect_line "Done"
 
 switch_node 2
-send "discover\n"
+send "scan\n"
 expect "Thread 网络"
 expect_line "Done"
 
@@ -75,7 +73,7 @@ wait_for "state" "leader"
 expect_line "Done"
 
 switch_node 2
-send "discover\n"
+send "scan\n"
 expect "スレッド"
 expect_line "Done"
 

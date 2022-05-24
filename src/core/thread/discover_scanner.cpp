@@ -308,11 +308,10 @@ void DiscoverScanner::HandleDiscoveryResponse(Mle::RxInfo &aRxInfo) const
     end = offset + tlv.GetLength();
 
     memset(&result, 0, sizeof(result));
-    result.mDiscover = true;
-    result.mPanId    = linkInfo->mPanId;
-    result.mChannel  = linkInfo->mChannel;
-    result.mRssi     = linkInfo->mRss;
-    result.mLqi      = linkInfo->mLqi;
+    result.mPanId   = linkInfo->mPanId;
+    result.mChannel = linkInfo->mChannel;
+    result.mRssi    = linkInfo->mRss;
+    result.mLqi     = linkInfo->mLqi;
 
     aRxInfo.mMessageInfo.GetPeerAddr().GetIid().ConvertToExtAddress(AsCoreType(&result.mExtAddress));
 

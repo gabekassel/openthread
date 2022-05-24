@@ -44,7 +44,7 @@ The Pending Operational Dataset is used to communicate changes to the Active Ope
    Network Name: OpenThread-8f28
    PAN ID: 0x8f28
    PSKc: c23a76e98f1a6483639b1ac1271e2e27
-   Security Policy: 0, onrc
+   Security Policy: 0, onrcb
    Done
    ```
 
@@ -103,7 +103,7 @@ After the device successfully attaches to a Thread network, the device will retr
    Network Name: OpenThread-8f28
    PAN ID: 0x8f28
    PSKc: c23a76e98f1a6483639b1ac1271e2e27
-   Security Policy: 0, onrc
+   Security Policy: 0, onrcb
    Done
    ```
 
@@ -180,7 +180,7 @@ Network Key: dfd34f0f05cad978ec4e32b0413038ff
 Network Name: OpenThread-8f28
 PAN ID: 0x8f28
 PSKc: c23a76e98f1a6483639b1ac1271e2e27
-Security Policy: 0, onrc
+Security Policy: 0, onrcb
 Done
 ```
 
@@ -359,7 +359,7 @@ Usage: `dataset mgmtsetcommand <active|pending> [TLV Type list] [-x]`
 Send MGMT_ACTIVE_SET or MGMT_PENDING_SET.
 
 ```bash
-> dataset mgmtsetcommand active activetimestamp 123 securitypolicy 1 onrc
+> dataset mgmtsetcommand active activetimestamp 123 securitypolicy 1 onrcb
 Done
 ```
 
@@ -441,7 +441,7 @@ Network Key: dfd34f0f05cad978ec4e32b0413038ff
 Network Name: OpenThread-8f28
 PAN ID: 0x8f28
 PSKc: c23a76e98f1a6483639b1ac1271e2e27
-Security Policy: 0, onrc
+Security Policy: 0, onrcb
 Done
 ```
 
@@ -503,7 +503,7 @@ Get security policy.
 
 ```bash
 > dataset securitypolicy
-672 onrc
+672 onrcb
 Done
 ```
 
@@ -519,7 +519,7 @@ Set security policy.
 - R: Non-CCM routers are allowed in Thread 1.2 CCM networks.
 
 ```bash
-> dataset securitypolicy 672 onrc
+> dataset securitypolicy 672 onrcb
 Done
 ```
 

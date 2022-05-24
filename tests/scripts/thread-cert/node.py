@@ -2108,11 +2108,15 @@ class NodeImpl:
         if result == 1:
             networks = []
             for line in self._expect_command_output()[2:]:
-                _, panid, extaddr, channel, dbm, lqi, _ = map(str.strip, line.split('|'))
+                _, J, networkname, extpanid, panid, extaddr, channel, dbm, lqi, _ = map(str.strip, line.split('|'))
+                J = bool(int(J))
                 panid = int(panid, 16)
                 channel, dbm, lqi = map(int, (channel, dbm, lqi))
 
                 networks.append({
+                    'joinable': J,
+                    'networkname': networkname,
+                    'extpanid': extpanid,
                     'panid': panid,
                     'extaddr': extaddr,
                     'channel': channel,

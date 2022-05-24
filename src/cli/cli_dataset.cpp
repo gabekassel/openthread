@@ -711,6 +711,11 @@ void Dataset::OutputSecurityPolicy(const otSecurityPolicy &aSecurityPolicy)
         OutputFormat("c");
     }
 
+    if (aSecurityPolicy.mBeaconsEnabled)
+    {
+        OutputFormat("b");
+    }
+
     if (aSecurityPolicy.mCommercialCommissioningEnabled)
     {
         OutputFormat("C");
@@ -764,6 +769,10 @@ otError Dataset::ParseSecurityPolicy(otSecurityPolicy &aSecurityPolicy, Arg *&aA
 
         case 'c':
             policy.mExternalCommissioningEnabled = true;
+            break;
+
+        case 'b':
+            policy.mBeaconsEnabled = true;
             break;
 
         case 'C':
